@@ -1,0 +1,8 @@
+.idea
+.vc_code
+dist
+node_modules
+npm-debug.log
+yarn-error.log
+coverage
+.nyc_output
