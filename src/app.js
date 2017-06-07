@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import redux from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import store from './store/reducers';
+import store from './store/createStore';
 import AppBar from './components/appBar';
 import './styles/main.scss';
 
@@ -19,7 +19,7 @@ store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch({type: 'UPDATE_LOCATION'});
+console.log(store.getState());
 
 ReactDOM.render(
     <App />,
