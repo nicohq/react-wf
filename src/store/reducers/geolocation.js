@@ -1,8 +1,8 @@
 import { setGeolocation } from '../../actions';
 
-const initalState = {
+const initalState = { //Default location = Kiev
     lat: 50.4,
-    lng: 30
+    lng: 30.5
 }
 
 export default (state = initalState, action) => {

@@ -1,0 +1,16 @@
+// https://openweathermap.org/weather-conditions
+$class-slug: background !default;
+$icon_list: '01' '02' '03' '04' '09' '10' '11' '12' '13' '50';
+
+%icon_placement {
+    background-size: cover;
+    background-position: -100px -100px;
+}
+
+@each $icon in $icon_list {
+    .#{$class-slug}-#{$icon}d,
+    .#{$class-slug}-#{$icon}n {
+        background: url('/icons/#{$icon}.svg');
+        @extend %icon_placement;
+    }
+}

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('../package.json');
 const vendors = Object.keys(config.dependencies);
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -90,6 +91,7 @@ webpackConfig.module.rules.push({
             presets: [
                 'babel-preset-react', ['babel-preset-env', {
                     targets: {
+                        browsers: ['last 2 versions', 'ie >= 11'],
                         uglify: true,
                         modules: false,
                     },
@@ -100,11 +102,16 @@ webpackConfig.module.rules.push({
 })
 
 webpackConfig.module.rules.push({
-    test: /\.(png|jpg|gif)$/,
+    test: /\.(png|jpg|gif|svg)$/,
     loader: 'url-loader',
     options: {
         limit: 8192,
     },
+})
+
+webpackConfig.module.rules.push({
+    test: /\.(png|jpg|svg)$/,
+    loader: 'file-loader'
 })
 
 
@@ -119,7 +126,12 @@ webpackConfig.plugins.push(
     }),
     new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
-    })
+    }),
+    new CopyWebpackPlugin([
+        {
+            from: resolve(__dirname, '../src/styles/icons'), to: resolve(__dirname, '../dist/styles/icons')
+        }
+    ])
 );
 
 module.exports = webpackConfig;

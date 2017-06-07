@@ -1,23 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import redux from 'react-redux';
+import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import store from './store/createStore';
-import AppBar from './components/appBar';
+import TopBar from './components/TopBar';
+import MainMenu from './components/SideMenu';
 import './styles/main.scss';
 
 injectTapEventPlugin();
 
-const App = () => (
-    <MuiThemeProvider>
-        <AppBar />
-    </MuiThemeProvider>
+const UI = () => (
+    <section>
+        <MainMenu />
+        <TopBar />
+    </section>
 )
 
-store.subscribe(() => {
-    console.log(store.getState());
-});
+const App = () => (
+    <Provider store={store}>
+        <MuiThemeProvider>
+            <UI />
+        </MuiThemeProvider>
+    </Provider>
+)
 
 console.log(store.getState());
 
@@ -25,4 +31,3 @@ ReactDOM.render(
     <App />,
     document.getElementById('root')
 );
-

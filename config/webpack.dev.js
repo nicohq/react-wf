@@ -7,7 +7,7 @@ module.exports = merge(baseConfig, {
         filename: '[name].js'
     },
     devServer: {
-        contentBase: resolve(__dirname, "../dist"),
+        contentBase: resolve(__dirname, "../src"),
         compress: true,
         historyApiFallback: true,
         port: 8000
