@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
+const items = [
+    {id: 1, title: 'Current', period: 1},
+    {id: 2, title: 'Weekly', period: 7},
+    {id: 3, title: '2 Weeks', period: 14}
+]
+
 const SideMenu = ({ isOpened, handleClick, onItemClick }) => (
     <Drawer open={ isOpened } docked={ false } onRequestChange={ handleClick }>
-        <MenuItem children='Current' />
-        <MenuItem children='5 days' />
+        { items.map(item =>
+            <MenuItem key={ item.id } children={ item.title } onTouchTap={ onItemClick }/>
+        )}
     </Drawer>
 )
 

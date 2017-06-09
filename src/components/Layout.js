@@ -11,10 +11,15 @@ class Layout extends React.Component {
         super(props);
         this.state = {
             isMenuOpened: false,
-            period: 1,
-            location: null
+            period: 1
         };
         this.handleMenuClick = this.handleMenuClick.bind(this);
+        this.handleItemMenuClick = this.handleItemMenuClick.bind(this);
+        this.fetchWeatherData = this.fetchWeatherData.bind(this);
+    }
+
+    fetchWeatherData() {
+        return this.props.getForecast(this.state.period, this.props.location)
     }
 
     handleMenuClick() {
@@ -23,25 +28,28 @@ class Layout extends React.Component {
         })
     }
 
+    handleItemMenuClick() {
+        //  TODO: Update forecast
+        // Make this work
+    }
+
     componentWillMount() {
-        this.props.getGeolocation();
+        this.props.getGeolocation()
+            .then(this.fetchWeatherData)
     }
 
     componentWillReceiveProps(nextProps) {
-        const previuos = this.state.location;
+        const previuos = this.props.location;
         const current = nextProps.location;
-        if (!Object.is(previuos, current)) {
-            this.props.getForecast();
-            this.setState({
-                location: current
-            })
+        if (previuos && !Object.is(previuos, current)) {
+            this.fetchWeatherData()
         }
     }
 
     render () {
         return (
             <section>
-                <SideMenu isOpened={ this.state.isMenuOpened } handleClick={ this.handleMenuClick }/>
+                <SideMenu isOpened={ this.state.isMenuOpened } handleClick={ this.handleMenuClick } onItemClick={ this.handleItemMenuClick } />
                 <TopBar onMenuClick={ this.handleMenuClick } />
                 <WeatherList data={ this.props.forecast }/>
             </section>

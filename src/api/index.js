@@ -2,9 +2,7 @@
 
 const URL_PARAMS = {
     appid: 'f892969403e42aece011a1c1c8853423',
-    units: 'metric',
-    q: 'London',
-    cnt: 1
+    units: 'metric'
 }
 const API_ROOT = 'http://api.openweathermap.org/data/2.5/forecast/daily?';
 
@@ -15,8 +13,8 @@ function getUrlParams(params) {
         .join('&')
 }
 
-export function fetchForecast(period = 1) {
-    return fetch(API_ROOT + getUrlParams({cnt: period}));
+export function fetchForecast(period = 1, location) {
+    return fetch(API_ROOT + getUrlParams({cnt: period, ...location}));
 }
 
 export function getGeodata() {

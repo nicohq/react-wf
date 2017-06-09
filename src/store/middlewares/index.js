@@ -23,7 +23,7 @@ const promiseMiddleware = store => next => action => {
             type: `${action.type + suffixes.start}`
         })
 
-        action.payload
+        return action.payload
             .then(handleType)
             .then(handler)
             .catch(handler)

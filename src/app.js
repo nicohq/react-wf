@@ -19,13 +19,6 @@ const App = () => (
     </Provider>
 )
 
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('/serviceworker.js');
-// }
-
-// store.dispatch(getGeolocation())
-// store.dispatch(getForecast(4))
-
 ReactDOM.render(
     <App />,
     document.getElementById('root')
