@@ -1,24 +1,18 @@
-const GET_FORECAST = 'GET_FORECAST';
-const SET_MENU_STATE = 'SET_MENU_STATE';
+import { fetchForecast, getGeodata } from '../api';
+
+const FETCH_FORECAST = 'FETCH_FORECAST';
 const SET_GEOLOCATION = 'SET_GEOLACATION';
 
 export function getForecast(period) {
     return {
-        type: GET_FORECAST,
-        period
+        type: FETCH_FORECAST,
+        payload: fetchForecast(period)
     }
 }
 
-export function setMenuState(state) {
-    return {
-        type: SET_MENU_STATE,
-        state
-    }
-}
-
-export function setGeolocation(location) {
+export function getGeolocation() {
     return {
         type: SET_GEOLOCATION,
-        location
+        payload: getGeodata()
     }
 }

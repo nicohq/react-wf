@@ -129,7 +129,7 @@ webpackConfig.plugins.push(
     }),
     new CopyWebpackPlugin([
         {
-            from: resolve(__dirname, '../src/styles/icons'), to: resolve(__dirname, '../dist/styles/icons')
+            from: resolve(__dirname, '../src/styles/icons'), to: resolve(__dirname, '../dist/icons')
         }
     ])
 );

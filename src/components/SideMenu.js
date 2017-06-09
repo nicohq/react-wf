@@ -2,20 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
-const SideMenu = ({isOpened}) => (
-    <Router>
-    <Drawer open={true} docked={false}>
-        <MenuItem linkButton children={<Link to="/">Current</Link>} />
-        <MenuItem linkButton children={<Link to="/forecast/5">5 days</Link>} />
-        <MenuItem linkButton children={<Link to="/forecast/10">10 days</Link>} />
+const SideMenu = ({ isOpened, handleClick, onItemClick }) => (
+    <Drawer open={ isOpened } docked={ false } onRequestChange={ handleClick }>
+        <MenuItem children='Current' />
+        <MenuItem children='5 days' />
     </Drawer>
-    </Router>
 )
 
 SideMenu.propTypes = {
-    isOpened: PropTypes.bool
+    isOpened: PropTypes.bool,
+    handleClick: PropTypes.func.isRequired,
+    onItemClick: PropTypes.func.isRequired
 }
 
 export default SideMenu;

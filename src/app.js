@@ -3,29 +3,28 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import store from './store/createStore';
-import TopBar from './components/TopBar';
-import MainMenu from './components/SideMenu';
+import store from './store';
+import { getGeolocation, getForecast } from './actions';
+
+import Layout from './components/Layout';
 import './styles/main.scss';
 
 injectTapEventPlugin();
 
-const UI = () => (
-    <section>
-        <MainMenu />
-        <TopBar />
-    </section>
-)
-
 const App = () => (
     <Provider store={store}>
         <MuiThemeProvider>
-            <UI />
+            <Layout />
         </MuiThemeProvider>
     </Provider>
 )
 
-console.log(store.getState());
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/serviceworker.js');
+// }
+
+// store.dispatch(getGeolocation())
+// store.dispatch(getForecast(4))
 
 ReactDOM.render(
     <App />,
